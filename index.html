@@ -1,65 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>6b6t Mapart Archive</title>
 
   <style>
+
     body {
-      background-color: #111;
+      margin: 0;
+      padding: 30px;
+      background-color: #0d0d0d;
       color: white;
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       text-align: center;
-      padding: 20px;
     }
 
     h1 {
-      font-size: 50px;
+      font-size: 55px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #888;
+      margin-bottom: 40px;
+      font-size: 18px;
     }
 
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
     }
 
     .card {
-      background: #1e1e1e;
-      padding: 15px;
-      border-radius: 12px;
-      width: 420px;
+      background-color: #1a1a1a;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.2s ease;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
     }
 
-    img {
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card img {
       width: 100%;
-      border-radius: 10px;
+      display: block;
     }
 
-    p {
-      font-size: 18px;
+    .info {
+      padding: 15px;
     }
+
+    .title {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .desc {
+      color: #999;
+      font-size: 14px;
+    }
+
   </style>
 </head>
 
 <body>
 
-<h1>6b6t Mapart Archive</h1>
+  <h1>6b6t Mapart Archive</h1>
 
-<p>My personal mapart collection.</p>
-
-<div class="gallery">
-
-  <div class="card">
-    <img src="image1.png">
-    <p>Album Cover #1</p>
+  <div class="subtitle">
+    Private showcase collection
   </div>
 
-  <div class="card">
-    <img src="image2.png">
-    <p>Music Mapart</p>
-  </div>
+  <div class="gallery">
 
-</div>
+    <div class="card">
+      <img src="1.png">
+      <div class="info">
+        <div class="title">Mapart #1</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="2.png">
+      <div class="info">
+        <div class="title">Mapart #2</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="3.png">
+      <div class="info">
+        <div class="title">Mapart #3</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="4.png">
+      <div class="info">
+        <div class="title">Mapart #4</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="5.png">
+      <div class="info">
+        <div class="title">Mapart #5</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="6.png">
+      <div class="info">
+        <div class="title">Mapart #6</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="7.png">
+      <div class="info">
+        <div class="title">Mapart #7</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="8.png">
+      <div class="info">
+        <div class="title">Mapart #8</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="9.png">
+      <div class="info">
+        <div class="title">Mapart #9</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="10.png">
+      <div class="info">
+        <div class="title">Mapart #10</div>
+        <div class="desc">Description here</div>
+      </div>
+    </div>
+
+  </div>
 
 </body>
 </html>
