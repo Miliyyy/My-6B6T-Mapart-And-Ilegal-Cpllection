@@ -5,65 +5,126 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>6b6t Mapart Archive</title>
+  <title>Miliyyy My 6B6T Mapart And Illegal Collection</title>
 
   <style>
 
     body {
       margin: 0;
-      padding: 30px;
-      background-color: #0d0d0d;
+      padding: 25px;
+      background-color: #0b0b0b;
       color: white;
       font-family: Arial, sans-serif;
-      text-align: center;
     }
 
     h1 {
-      font-size: 55px;
-      margin-bottom: 10px;
+      text-align: center;
+      font-size: 52px;
+      margin-bottom: 8px;
     }
 
     .subtitle {
-      color: #888;
-      margin-bottom: 40px;
+      text-align: center;
+      color: #8f8f8f;
+      margin-bottom: 35px;
       font-size: 18px;
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
       gap: 25px;
     }
 
     .card {
-      background-color: #1a1a1a;
+      background-color: #171717;
       border-radius: 18px;
       overflow: hidden;
-      transition: 0.2s ease;
-      box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
+      transition: 0.2s;
+      box-shadow: 0px 0px 18px rgba(0,0,0,0.4);
     }
 
     .card:hover {
-      transform: scale(1.02);
+      transform: scale(1.01);
     }
 
     .card img {
       width: 100%;
       display: block;
+      cursor: pointer;
     }
 
-    .info {
+    .content {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
       padding: 15px;
     }
 
+    .left {
+      flex: 2;
+      text-align: left;
+    }
+
     .title {
-      font-size: 22px;
-      margin-bottom: 8px;
+      font-size: 24px;
+      margin-bottom: 10px;
     }
 
     .desc {
-      color: #999;
+      color: #9d9d9d;
       font-size: 14px;
+    }
+
+    .right {
+      flex: 1;
+      background-color: #101010;
+      border-radius: 12px;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .info-title {
+      font-size: 15px;
+      color: #bbbbbb;
+      margin-bottom: 8px;
+    }
+
+    .info-line {
+      font-size: 14px;
+      color: #8a8a8a;
+      margin-bottom: 6px;
+    }
+
+    /* popup viewer */
+
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 40px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.92);
+    }
+
+    .popup img {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 14px;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: white;
+      font-size: 45px;
+      cursor: pointer;
     }
 
   </style>
@@ -71,95 +132,94 @@
 
 <body>
 
-  <h1>6b6t Mapart Archive</h1>
+  <h1>Miliyyy My 6B6T Mapart And Illegal Collection</h1>
 
   <div class="subtitle">
-    Private showcase collection
+    Private archive showcase
   </div>
 
   <div class="gallery">
 
-    <div class="card">
-      <img src="1.png">
-      <div class="info">
-        <div class="title">Mapart #1</div>
-        <div class="desc">Description here</div>
-      </div>
-    </div>
+    <!-- MAPART 1 -->
 
     <div class="card">
-      <img src="2.png">
-      <div class="info">
-        <div class="title">Mapart #2</div>
-        <div class="desc">Description here</div>
+
+      <img src="1.png" onclick="openPopup(this.src)">
+
+      <div class="content">
+
+        <div class="left">
+          <div class="title">Mapart #1</div>
+          <div class="desc">
+            Add your description here
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="info-title">Info</div>
+
+          <div class="info-line">Type: Carpet</div>
+          <div class="info-line">Size: 1x1</div>
+          <div class="info-line">Server: 6b6t</div>
+          <div class="info-line">Artist: Unknown</div>
+        </div>
+
       </div>
+
     </div>
 
-    <div class="card">
-      <img src="3.png">
-      <div class="info">
-        <div class="title">Mapart #3</div>
-        <div class="desc">Description here</div>
-      </div>
-    </div>
+    <!-- MAPART 2 -->
 
     <div class="card">
-      <img src="4.png">
-      <div class="info">
-        <div class="title">Mapart #4</div>
-        <div class="desc">Description here</div>
-      </div>
-    </div>
 
-    <div class="card">
-      <img src="5.png">
-      <div class="info">
-        <div class="title">Mapart #5</div>
-        <div class="desc">Description here</div>
-      </div>
-    </div>
+      <img src="2.png" onclick="openPopup(this.src)">
 
-    <div class="card">
-      <img src="6.png">
-      <div class="info">
-        <div class="title">Mapart #6</div>
-        <div class="desc">Description here</div>
-      </div>
-    </div>
+      <div class="content">
 
-    <div class="card">
-      <img src="7.png">
-      <div class="info">
-        <div class="title">Mapart #7</div>
-        <div class="desc">Description here</div>
-      </div>
-    </div>
+        <div class="left">
+          <div class="title">Mapart #2</div>
+          <div class="desc">
+            Add your description here
+          </div>
+        </div>
 
-    <div class="card">
-      <img src="8.png">
-      <div class="info">
-        <div class="title">Mapart #8</div>
-        <div class="desc">Description here</div>
-      </div>
-    </div>
+        <div class="right">
+          <div class="info-title">Info</div>
 
-    <div class="card">
-      <img src="9.png">
-      <div class="info">
-        <div class="title">Mapart #9</div>
-        <div class="desc">Description here</div>
-      </div>
-    </div>
+          <div class="info-line">Type: Printed</div>
+          <div class="info-line">Size: 2x2</div>
+          <div class="info-line">Server: 6b6t</div>
+          <div class="info-line">Artist: Unknown</div>
+        </div>
 
-    <div class="card">
-      <img src="10.png">
-      <div class="info">
-        <div class="title">Mapart #10</div>
-        <div class="desc">Description here</div>
       </div>
+
     </div>
 
   </div>
+
+  <!-- IMAGE POPUP -->
+
+  <div id="popup" class="popup">
+
+    <span class="close" onclick="closePopup()">&times;</span>
+
+    <img id="popup-img">
+
+  </div>
+
+  <script>
+
+    function openPopup(src) {
+      document.getElementById("popup").style.display = "block";
+      document.getElementById("popup-img").src = src;
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+  </script>
 
 </body>
 </html>
