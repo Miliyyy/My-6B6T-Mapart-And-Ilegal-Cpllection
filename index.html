@@ -1,225 +1,1039 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miliyyy's 6B6T Collection — Mapart & Illegal Items Museum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 
-  <title>Miliyyy My 6B6T Mapart And Illegal Collection</title>
+<style>
+  :root {
+    --bg: #060608;
+    --surface: #0d0d12;
+    --surface2: #131318;
+    --border: #1e1e28;
+    --accent: #c8ff00;
+    --accent2: #ff4040;
+    --text: #e8e8f0;
+    --muted: #555568;
+    --dim: #888899;
+  }
 
-  <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      padding: 25px;
-      background-color: #0b0b0b;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-    h1 {
-      text-align: center;
-      font-size: 52px;
-      margin-bottom: 8px;
-    }
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
 
-    .subtitle {
-      text-align: center;
-      color: #8f8f8f;
-      margin-bottom: 35px;
-      font-size: 18px;
-    }
+  /* ── HERO HEADER ── */
+  header {
+    position: relative;
+    padding: 80px 48px 60px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-      gap: 25px;
-    }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,255,0,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
 
-    .card {
-      background-color: #171717;
-      border-radius: 18px;
-      overflow: hidden;
-      transition: 0.2s;
-      box-shadow: 0px 0px 18px rgba(0,0,0,0.4);
-    }
+  header::after {
+    content: '6B6T';
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 220px;
+    color: rgba(255,255,255,0.02);
+    letter-spacing: -8px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
 
-    .card:hover {
-      transform: scale(1.01);
-    }
+  .header-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 12px;
+    margin-bottom: 28px;
+  }
 
-    .card img {
-      width: 100%;
-      display: block;
-      cursor: pointer;
-    }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 110px);
+    line-height: 0.92;
+    letter-spacing: -1px;
+    color: var(--text);
+    max-width: 700px;
+  }
 
-    .content {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 15px;
-    }
+  h1 span {
+    color: var(--accent);
+  }
 
-    .left {
-      flex: 2;
-      text-align: left;
-    }
+  .header-meta {
+    margin-top: 32px;
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
-    .title {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
+  .header-meta .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
-    .desc {
-      color: #9d9d9d;
-      font-size: 14px;
-    }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--accent);
+    line-height: 1;
+  }
 
-    .right {
-      flex: 1;
-      background-color: #101010;
-      border-radius: 12px;
-      padding: 12px;
-      text-align: left;
-    }
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-    .info-title {
-      font-size: 15px;
-      color: #bbbbbb;
-      margin-bottom: 8px;
-    }
+  .divider-v {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
 
-    .info-line {
-      font-size: 14px;
-      color: #8a8a8a;
-      margin-bottom: 6px;
-    }
+  /* ── NAV TABS ── */
+  .tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 48px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(6,6,8,0.95);
+    backdrop-filter: blur(12px);
+  }
 
-    /* popup viewer */
+  .tab-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 24px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    margin-bottom: -1px;
+  }
 
-    .popup {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      padding-top: 40px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.92);
-    }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
 
-    .popup img {
-      margin: auto;
-      display: block;
-      max-width: 90%;
-      max-height: 85%;
-      border-radius: 14px;
-    }
+  .tab-btn:hover:not(.active) {
+    color: var(--dim);
+  }
 
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: white;
-      font-size: 45px;
-      cursor: pointer;
-    }
+  /* ── MAIN CONTENT ── */
+  main {
+    padding: 48px;
+    position: relative;
+    z-index: 1;
+  }
 
-  </style>
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── SECTION HEADING ── */
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 1px;
+  }
+
+  .section-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  /* ── GALLERY GRID ── */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2px;
+  }
+
+  .card {
+    background: var(--surface);
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: border-color 0.25s;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.10s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.20s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+  .card:nth-child(6) { animation-delay: 0.30s; }
+
+  .card:hover {
+    border-color: var(--accent);
+    z-index: 2;
+  }
+
+  .card:hover .card-img img {
+    transform: scale(1.04);
+  }
+
+  .card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .card-img {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--surface2);
+    position: relative;
+  }
+
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6,6,8,0.9) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+  }
+
+  .overlay-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+
+  .card-num {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: rgba(6,6,8,0.8);
+    padding: 2px 8px;
+    backdrop-filter: blur(4px);
+  }
+
+  .card-body {
+    padding: 18px 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-name {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    color: var(--dim);
+  }
+
+  .badge.type-mapart { border-color: rgba(200,255,0,0.3); color: var(--accent); }
+  .badge.type-illegal { border-color: rgba(255,64,64,0.3); color: var(--accent2); }
+  .badge.type-rare { border-color: rgba(255,200,0,0.3); color: #ffc800; }
+
+  /* ── FEATURED (large card) ── */
+  .card.featured {
+    grid-column: span 2;
+  }
+
+  .card.featured .card-img {
+    aspect-ratio: 2 / 1;
+  }
+
+  /* ── ABOUT SECTION ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .about-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px;
+  }
+
+  .about-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .about-block p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--dim);
+  }
+
+  .about-block .mono {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    line-height: 1.6;
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.96);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px;
+    cursor: zoom-out;
+  }
+
+  .lightbox.open {
+    display: flex;
+    animation: lbIn 0.2s ease;
+  }
+
+  @keyframes lbIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+    border: 1px solid var(--border);
+    cursor: default;
+  }
+
+  .lightbox-info {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .lightbox-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .lightbox-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 24px; right: 30px;
+    font-size: 28px;
+    color: var(--dim);
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    transition: color 0.2s;
+    z-index: 10;
+  }
+
+  .lightbox-close:hover { color: var(--accent); }
+
+  .lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 22px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    z-index: 10;
+  }
+
+  .lightbox-nav:hover { border-color: var(--accent); color: var(--accent); }
+  .lightbox-nav.prev { left: 20px; }
+  .lightbox-nav.next { right: 20px; }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 80px;
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+  }
+
+  footer .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--muted);
+  }
+
+  footer .logo span { color: var(--accent); }
+
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    header, main, .tabs { padding-left: 20px; padding-right: 20px; }
+    header::after { display: none; }
+    h1 { font-size: 52px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .card.featured { grid-column: span 1; }
+    .card.featured .card-img { aspect-ratio: 1 / 1; }
+    .gallery { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
-
 <body>
 
-  <h1>Miliyyy My 6B6T Mapart And Illegal Collection</h1>
-
-  <div class="subtitle">
-    Private archive showcase
+<!-- HEADER -->
+<header>
+  <div class="header-tag">6B6T.org — Private Archive</div>
+  <h1>Miliyyy's<br><span>Collection</span></h1>
+  <div class="header-meta">
+    <div class="stat">
+      <span class="stat-num" id="total-count">20+</span>
+      <span class="stat-label">Total Items</span>
+    </div>
+    <div class="divider-v"></div>
+    <div class="stat">
+      <span class="stat-num">6B6T</span>
+      <span class="stat-label">Server</span>
+    </div>
+    <div class="divider-v"></div>
+    <div class="stat">
+      <span class="stat-num">2026</span>
+      <span class="stat-label">Archived</span>
+    </div>
   </div>
+</header>
 
-  <div class="gallery">
+<!-- TABS -->
+<nav class="tabs">
+  <button class="tab-btn active" onclick="switchTab('mapart', this)">Mapart</button>
+  <button class="tab-btn" onclick="switchTab('illegal', this)">Illegal Items</button>
+  <button class="tab-btn" onclick="switchTab('about', this)">About</button>
+</nav>
 
-    <!-- MAPART 1 -->
+<!-- MAIN -->
+<main>
 
-    <div class="card">
+  <!-- MAPART SECTION -->
+  <section class="section active" id="sec-mapart">
+    <div class="section-head">
+      <h2 class="section-title">Map Art</h2>
+      <span class="section-count" id="mapart-count">Loading...</span>
+    </div>
+    <div class="gallery" id="gallery-mapart">
 
-      <img src="1.png" onclick="openPopup(this.src)">
-
-      <div class="content">
-
-        <div class="left">
-          <div class="title">Mapart #1</div>
-          <div class="desc">
-            Add your description here
+      <div class="card featured" onclick="openLightbox(0, 'mapart')">
+        <div class="card-img">
+          <img src="1.png" alt="Mapart #1" loading="lazy">
+          <div class="card-num">001</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Mapart #1</div>
+          <div class="card-meta">
+            <span class="badge type-mapart">Mapart</span>
+            <span class="badge">Carpet</span>
+            <span class="badge">1×1</span>
+            <span class="badge">6B6T</span>
           </div>
         </div>
+      </div>
 
-        <div class="right">
-          <div class="info-title">Info</div>
-
-          <div class="info-line">Type: Carpet</div>
-          <div class="info-line">Size: 1x1</div>
-          <div class="info-line">Server: 6b6t</div>
-          <div class="info-line">Artist: Unknown</div>
+      <div class="card" onclick="openLightbox(1, 'mapart')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 174141.png" alt="Mapart #2" loading="lazy">
+          <div class="card-num">002</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
         </div>
+        <div class="card-body">
+          <div class="card-name">Mapart #2</div>
+          <div class="card-meta">
+            <span class="badge type-mapart">Mapart</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
 
+      <div class="card" onclick="openLightbox(2, 'mapart')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 174203.png" alt="Mapart #3" loading="lazy">
+          <div class="card-num">003</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Mapart #3</div>
+          <div class="card-meta">
+            <span class="badge type-mapart">Mapart</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(3, 'mapart')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 174613.png" alt="Mapart #4" loading="lazy">
+          <div class="card-num">004</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Mapart #4</div>
+          <div class="card-meta">
+            <span class="badge type-mapart">Mapart</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(4, 'mapart')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 183027.png" alt="Mapart #5" loading="lazy">
+          <div class="card-num">005</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Mapart #5</div>
+          <div class="card-meta">
+            <span class="badge type-mapart">Mapart</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(5, 'mapart')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 183036.png" alt="Mapart #6" loading="lazy">
+          <div class="card-num">006</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Mapart #6</div>
+          <div class="card-meta">
+            <span class="badge type-mapart">Mapart</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(6, 'mapart')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 183043.png" alt="Mapart #7" loading="lazy">
+          <div class="card-num">007</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Mapart #7</div>
+          <div class="card-meta">
+            <span class="badge type-mapart">Mapart</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(7, 'mapart')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 183058.png" alt="Mapart #8" loading="lazy">
+          <div class="card-num">008</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Mapart #8</div>
+          <div class="card-meta">
+            <span class="badge type-mapart">Mapart</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
       </div>
 
     </div>
+  </section>
 
-    <!-- MAPART 2 -->
+  <!-- ILLEGAL ITEMS SECTION -->
+  <section class="section" id="sec-illegal">
+    <div class="section-head">
+      <h2 class="section-title">Illegal Items</h2>
+      <span class="section-count" id="illegal-count">Loading...</span>
+    </div>
+    <div class="gallery" id="gallery-illegal">
 
-    <div class="card">
-
-      <img src="2.png" onclick="openPopup(this.src)">
-
-      <div class="content">
-
-        <div class="left">
-          <div class="title">Mapart #2</div>
-          <div class="desc">
-            Add your description here
+      <div class="card" onclick="openLightbox(0, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 183107.png" alt="Illegal #1" loading="lazy">
+          <div class="card-num">001</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #1</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
           </div>
         </div>
+      </div>
 
-        <div class="right">
-          <div class="info-title">Info</div>
-
-          <div class="info-line">Type: Printed</div>
-          <div class="info-line">Size: 2x2</div>
-          <div class="info-line">Server: 6b6t</div>
-          <div class="info-line">Artist: Unknown</div>
+      <div class="card" onclick="openLightbox(1, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 183123.png" alt="Illegal #2" loading="lazy">
+          <div class="card-num">002</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
         </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #2</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
 
+      <div class="card" onclick="openLightbox(2, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 183210.png" alt="Illegal #3" loading="lazy">
+          <div class="card-num">003</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #3</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(3, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 183219.png" alt="Illegal #4" loading="lazy">
+          <div class="card-num">004</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #4</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(4, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 191900.png" alt="Illegal #5" loading="lazy">
+          <div class="card-num">005</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #5</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(5, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 191908.png" alt="Illegal #6" loading="lazy">
+          <div class="card-num">006</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #6</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(6, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 191917.png" alt="Illegal #7" loading="lazy">
+          <div class="card-num">007</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #7</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(7, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 191933.png" alt="Illegal #8" loading="lazy">
+          <div class="card-num">008</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #8</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(8, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 191958.png" alt="Illegal #9" loading="lazy">
+          <div class="card-num">009</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #9</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(9, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 192005.png" alt="Illegal #10" loading="lazy">
+          <div class="card-num">010</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #10</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(10, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 192055.png" alt="Illegal #11" loading="lazy">
+          <div class="card-num">011</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #11</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(11, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 192116.png" alt="Illegal #12" loading="lazy">
+          <div class="card-num">012</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #12</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(12, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 192141.png" alt="Illegal #13" loading="lazy">
+          <div class="card-num">013</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #13</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openLightbox(13, 'illegal')">
+        <div class="card-img">
+          <img src="Screenshot 2026-05-07 192210.png" alt="Illegal #14" loading="lazy">
+          <div class="card-num">014</div>
+          <div class="card-overlay"><button class="overlay-btn">View Full</button></div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Illegal Item #14</div>
+          <div class="card-meta">
+            <span class="badge type-illegal">Illegal</span>
+            <span class="badge">6B6T</span>
+          </div>
+        </div>
       </div>
 
     </div>
+  </section>
 
+  <!-- ABOUT SECTION -->
+  <section class="section" id="sec-about">
+    <div class="section-head">
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-block">
+        <h3>The Collection</h3>
+        <p>A private archive of map art and rare/illegal items collected on the 6B6T.org anarchy Minecraft server. Each piece in this museum represents a unique moment, player, or event from the server's history.</p>
+        <p class="mono">
+          CURATOR: Miliyyy<br>
+          SERVER: 6B6T.org<br>
+          TYPE: Anarchy / Survival<br>
+          YEAR: 2026
+        </p>
+      </div>
+      <div class="about-block">
+        <h3>Map Art</h3>
+        <p>Map art is created by carefully placing blocks across the Minecraft terrain so that when viewed through an in-game map item, they form a pixel image. Each map is a unique handcrafted piece — some are solo works, others are large collaborative builds spanning dozens of chunks.</p>
+      </div>
+      <div class="about-block">
+        <h3>Illegal Items</h3>
+        <p>On 6B6T, certain items exist outside the normal bounds of vanilla Minecraft — obtained through exploits, duplication glitches, or server-specific mechanics. These items are considered "illegal" by most server standards and are exceptionally rare to own and preserve.</p>
+      </div>
+      <div class="about-block">
+        <h3>Contact</h3>
+        <p>Found something you recognize? Want to trade or share information about any of these items? Reach out in-game or on the 6B6T Discord.</p>
+        <p class="mono">
+          IGN: Miliyyy<br>
+          SERVER: 6b6t.org<br>
+          ALWAYS ONLINE
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">MILIYYY<span>.</span>6B6T</div>
+  <p>Private Archive — 2026 — All screenshots property of Miliyyy</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="handleLightboxClick(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <button class="lightbox-nav prev" onclick="navigateLightbox(-1); event.stopPropagation()">‹</button>
+  <button class="lightbox-nav next" onclick="navigateLightbox(1); event.stopPropagation()">›</button>
+  <img id="lb-img" src="" alt="" onclick="event.stopPropagation()">
+  <div class="lightbox-info">
+    <div class="lightbox-title" id="lb-title"></div>
+    <div class="lightbox-meta" id="lb-meta"></div>
   </div>
+</div>
 
-  <!-- IMAGE POPUP -->
+<script>
+  // ── TAB SWITCHING ──
+  function switchTab(name, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('sec-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
 
-  <div id="popup" class="popup">
+  // ── LIGHTBOX ──
+  let currentGallery = 'mapart';
+  let currentIndex = 0;
 
-    <span class="close" onclick="closePopup()">&times;</span>
+  const galleries = {
+    mapart: [
+      { src: '1.png', title: 'Mapart #1', meta: 'Type: Carpet · Size: 1×1 · Server: 6B6T' },
+      { src: 'Screenshot 2026-05-07 174141.png', title: 'Mapart #2', meta: 'Server: 6B6T' },
+      { src: 'Screenshot 2026-05-07 174203.png', title: 'Mapart #3', meta: 'Server: 6B6T' },
+      { src: 'Screenshot 2026-05-07 174613.png', title: 'Mapart #4', meta: 'Server: 6B6T' },
+      { src: 'Screenshot 2026-05-07 183027.png', title: 'Mapart #5', meta: 'Server: 6B6T' },
+      { src: 'Screenshot 2026-05-07 183036.png', title: 'Mapart #6', meta: 'Server: 6B6T' },
+      { src: 'Screenshot 2026-05-07 183043.png', title: 'Mapart #7', meta: 'Server: 6B6T' },
+      { src: 'Screenshot 2026-05-07 183058.png', title: 'Mapart #8', meta: 'Server: 6B6T' },
+    ],
+    illegal: [
+      { src: 'Screenshot 2026-05-07 183107.png', title: 'Illegal Item #1', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 183123.png', title: 'Illegal Item #2', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 183210.png', title: 'Illegal Item #3', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 183219.png', title: 'Illegal Item #4', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 191900.png', title: 'Illegal Item #5', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 191908.png', title: 'Illegal Item #6', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 191917.png', title: 'Illegal Item #7', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 191933.png', title: 'Illegal Item #8', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 191958.png', title: 'Illegal Item #9', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 192005.png', title: 'Illegal Item #10', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 192055.png', title: 'Illegal Item #11', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 192116.png', title: 'Illegal Item #12', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 192141.png', title: 'Illegal Item #13', meta: 'Server: 6B6T · Rare' },
+      { src: 'Screenshot 2026-05-07 192210.png', title: 'Illegal Item #14', meta: 'Server: 6B6T · Rare' },
+    ]
+  };
 
-    <img id="popup-img">
+  function openLightbox(index, gallery) {
+    currentGallery = gallery;
+    currentIndex = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 
-  </div>
+  function updateLightbox() {
+    const item = galleries[currentGallery][currentIndex];
+    document.getElementById('lb-img').src = item.src;
+    document.getElementById('lb-img').alt = item.title;
+    document.getElementById('lb-title').textContent = item.title;
+    document.getElementById('lb-meta').textContent = item.meta + ' · ' + (currentIndex + 1) + ' / ' + galleries[currentGallery].length;
+  }
 
-  <script>
+  function navigateLightbox(dir) {
+    const len = galleries[currentGallery].length;
+    currentIndex = (currentIndex + dir + len) % len;
+    updateLightbox();
+  }
 
-    function openPopup(src) {
-      document.getElementById("popup").style.display = "block";
-      document.getElementById("popup-img").src = src;
-    }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
-    function closePopup() {
-      document.getElementById("popup").style.display = "none";
-    }
+  function handleLightboxClick(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
 
-  </script>
+  document.addEventListener('keydown', function(e) {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') navigateLightbox(1);
+    if (e.key === 'ArrowLeft') navigateLightbox(-1);
+  });
+
+  // ── ITEM COUNTS ──
+  document.getElementById('mapart-count').textContent = galleries.mapart.length + ' items';
+  document.getElementById('illegal-count').textContent = galleries.illegal.length + ' items';
+  document.getElementById('total-count').textContent = galleries.mapart.length + galleries.illegal.length;
+</script>
 
 </body>
 </html>
